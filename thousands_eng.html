@@ -224,9 +224,9 @@ function modifyMark(wordId, modifier) {
     let mark = allWords[wordId][2] ? parseInt(allWords[wordId][2]) : 0;
 
     console.log('change', wordId, modifier);
-    console.log('cur mark', mark, ' total score', score[mark][0]);
+    console.log('cur mark', mark, score[mark][1], 'score', score[mark][0]);
     score[mark][0] -= modifier;
-    console.log('new score', mark);
+    console.log('new', score[mark][1], 'score', score[mark][0]);
 
     mark += modifier;
     if (mark < 0) {
@@ -237,7 +237,7 @@ function modifyMark(wordId, modifier) {
     }
 
     score[mark][0] += modifier;
-    console.log('new mark', mark, ' total score', score[mark][0]);
+    console.log('new mark', mark, score[mark][1], 'score', score[mark][0]);
 
     allWords[wordId][2] = mark;
     $('#' + wordId).removeClass().addClass('mark' + mark);
