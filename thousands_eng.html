@@ -174,9 +174,9 @@ function showWords() {
             continue;
         }
 
-        let word = $('<span>')
+        $('<span>')
             .prop('id', i)
-            .prop('title', 'top ' + i)
+            .prop('title', 'top ' + i + ', ' + selsOptions.cat[allWords[i][0]])
             .text(allWords[i][1])
             .addClass('mark' + mark)
             .appendTo(wordsHolder)
@@ -208,7 +208,7 @@ function dblclickWord() {
     let word = $(this).text(), popup = $('#word-popup');
     let links = [];
     for (let key in linksOptions) {
-        links.push( '<a target="_blank" href="' + linksOptions[key].replace('/[[word]]/g', word) + '">' + key + '</a>' );
+        links.push( '<a target="_blank" href="' + linksOptions[key].replace('[[word]]', word) + '">' + key + '</a>' );
     }
 
     popup
@@ -233,6 +233,7 @@ function modifyMark(wordId, modifier) {
     if (mark >= score.length) {
         mark -= score.length;
     }
+    console.log('new mark', mark);
 
     score[mark][0] += modifier;
     console.log('changed mark', mark);
@@ -275,7 +276,6 @@ function loadAllScore() {
         }
         for (let i = 0; i < 100; i++) {
             let wordId = hundredId * 100 + i;
-            console.log(wordId);
             if (!allWords[wordId]) {
                 break;
             }
@@ -311,7 +311,7 @@ function getCookie(name) {
     }
 
     if (!document.cookie) {
-        console.log('there is no cookies');
+        //console.log('there is no cookies');
         return '';
     }
     let allCookies = document.cookie.split(';');
@@ -319,12 +319,12 @@ function getCookie(name) {
         let pair = allCookies[i].trim().split('=');
         cookies[pair[0].trim()] = pair[1].trim();
     }
-    console.log('loaded cookies:', cookies);
+    //console.log('loaded cookies:', cookies);
 
     if (cookies[name]) {
         return cookies[name];
     }
-    console.warn('no cookie with name', name);
+    //console.warn('no cookie with name', name);
     return '';
 }
 
