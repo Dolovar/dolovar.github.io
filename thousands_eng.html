@@ -199,12 +199,14 @@ function showWords() {
 }
 
 function clickWord() {
-    modifyMark($(this).prop('id'), 1);
+    modifyMark($(this).prop('id'));
 }
 
 function dblclickWord() {
-    modifyMark($(this).prop('id'), -1); // fix for two onclick
-    modifyMark($(this).prop('id'), -1);
+    // fix for two onclick
+    for (let i = 0; i < score.length - 2; i++) {
+        modifyMark($(this).prop('id'));
+    }
 
     let word = $(this).text(), popup = $('#word-popup');
     let links = [];
@@ -221,23 +223,20 @@ function dblclickWord() {
     ;
 }
 
-function modifyMark(wordId, modifier) {
+function modifyMark(wordId) {
     let mark = allWords[wordId][2] ? parseInt(allWords[wordId][2]) : 0;
 
-    console.log('change', wordId, modifier);
+    console.log('change mark for word', wordId);
     console.log('cur mark', mark, score[mark][1], 'score', score[mark][0]);
-    score[mark][0] -= modifier;
+    score[mark][0]--;
     console.log('new', score[mark][1], 'score', score[mark][0]);
 
-    mark += modifier;
-    if (mark < 0) {
-        mark += score.length;
-    }
+    mark++;
     if (mark >= score.length) {
-        mark -= score.length;
+        mark = 0;
     }
 
-    score[mark][0] += modifier;
+    score[mark][0]++;
     console.log('new mark', mark, score[mark][1], 'score', score[mark][0]);
 
     allWords[wordId][2] = mark;
