@@ -221,7 +221,7 @@ function dblclickWord() {
 }
 
 function modifyMark(wordId, modifier) {
-    let mark = allWords[wordId][2] ? allWords[wordId][2] : 0;
+    let mark = allWords[wordId][2] ? parseInt(allWords[wordId][2]) : 0;
 
     console.log('change mark', wordId, mark, modifier);
     score[mark][0] -= modifier;
