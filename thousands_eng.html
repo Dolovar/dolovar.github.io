@@ -203,7 +203,8 @@ function clickWord() {
 }
 
 function dblclickWord() {
-    modifyMark($(this).prop('id'), -2); // fix for two onclick
+    modifyMark($(this).prop('id'), -1); // fix for two onclick
+    modifyMark($(this).prop('id'), -1);
 
     let word = $(this).text(), popup = $('#word-popup');
     let links = [];
