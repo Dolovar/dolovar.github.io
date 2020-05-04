@@ -105,7 +105,7 @@ let linksOptions = {
     'context': 'https://context.reverso.net/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9/[[word]]',
     'merriam-webster': 'https://www.merriam-webster.com/dictionary/[[word]]',
     'lexico': 'https://www.lexico.com/definition/[[word]]',
-    'cambridge': 'https://dictionary.cambridge.org/ru/%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C/%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9/[[word]]',
+    'cambridge': 'https://dictionary.cambridge.org/us/dictionary/english/[[word]]',
     'oxford': 'https://www.oxfordlearnersdictionaries.com/definition/english/country?q=[[word]]',
     'urbandictionary': 'https://www.urbandictionary.com/define.php?term=[[word]]',
     'google translate': 'https://translate.google.com/?sl=en&tl=ru&text=[[word]]',
@@ -203,9 +203,11 @@ function clickWord() {
 }
 
 function dblclickWord() {
+    let wordId = $(this).prop('id');
+
     // fix for two onclick
     for (let i = 0; i < score.length - 2; i++) {
-        modifyMark($(this).prop('id'));
+        modifyMark(wordId);
     }
 
     let word = $(this).text(), popup = $('#word-popup');
@@ -216,7 +218,7 @@ function dblclickWord() {
 
     popup
         .empty()
-        .append( $('<p>').html( selsOptions.cat[sels.cat.val()] + ': <b>' + word + '</b>') )
+        .append( $('<p>').html( '[' + wordId + '] <b>' + word + '</b> (' + selsOptions.cat[sels.cat.val()] + ')') )
         .append( $('<p>').html('Find in:') )
         .append( $('<p>').html(links.join(' ')) )
         .modal()
