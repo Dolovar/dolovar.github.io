@@ -279,14 +279,14 @@ function modifyMark(wordId) {
 }
 
 function refreshScore() {
-    let text = 'your score: ';
+    let text = 'My score: ';
     let parts = [], order = [1, 2, 0];
     for (let i in order) {
         let sc = score[order[i]];
         parts.push('<b class="' + sc[2] + '">' + sc[0] + '</b> ' + sc[1]);
     }
     text += parts.join(', ');
-    text += ' from ' + sels.num.val() + ' total';
+    text += ' (from ' + sels.num.val() + ' total)';
     scoreHolder.html(text);
 }
 
