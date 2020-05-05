@@ -193,12 +193,13 @@ function showWords() {
             catCounts[ci] = 0;
         }
         catCounts[ci]++;
-        if (catId !== '*' && catId !== ci) {
-            continue;
-        }
 
         let mark = allWords[i][2] ? parseInt(allWords[i][2]) : 0;
         score[mark][0]++;
+
+        if (catId !== '*' && catId !== ci) {
+            continue;
+        }
         if (marksFilter >= 0 && marksFilter !== mark) {
             continue;
         }
@@ -285,7 +286,7 @@ function refreshScore() {
         parts.push('<b class="' + sc[2] + '">' + sc[0] + '</b> ' + sc[1]);
     }
     text += parts.join(', ');
-    text += ' from ' + wordsHolder.children().length + ' total';
+    text += ' from ' + sels.num.val() + ' total';
     scoreHolder.html(text);
 }
 
