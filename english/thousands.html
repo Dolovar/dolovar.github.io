@@ -56,10 +56,16 @@
 <script type="text/javascript">
 
 $( document ).ready(function() {
+
     checkData();
     loadAllScore();
     initSelectors();
-    $('#greeting-popup').modal();
+
+    if (!getCookie('greeted')) {
+        $('#greeting-popup').modal();
+        setCookie('greeted', 'ok');
+    }
+
 });
 
 let selsHolder = $('#selectors-holder'),
@@ -145,6 +151,17 @@ function initSelectors() {
         }
         selsHolder.append(' ');
     }
+
+    selsHolder
+        .append(' (')
+        .append(
+            $('<a>')
+                .text('about')
+                .prop('href', 'javascript:void(0);')
+                .on('click', function() { $('#greeting-popup').modal(); })
+        )
+        .append(')')
+    ;
 
     sels.marks.val('*');
     loadSelectorsValue();
