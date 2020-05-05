@@ -46,7 +46,7 @@
 <div id="word-popup" style="display:none;"></div>
 <div id="greeting-popup" style="display:none;">
     <h3>Hello.</h3>
-    <p>Do you know all the most common words in English?<br/> (from <a href="https://www.wordfrequency.info/free.asp">wordfrequency.info</a>)</p>
+    <p>Do you know the most common words in English?<br/> (from <a href="https://www.wordfrequency.info/free.asp">wordfrequency.info</a>)</p>
     <p>This is not an exercise machine.<br/> There is just a checklist for those who want to check their knowledge for gaps.</p>
     <p>You can mark the words with a click or tap.<br/> Double clicks can also be useful.</p>
     <p>And don't forget to look into selectors at the top of the page.</p>
@@ -65,12 +65,6 @@ $( document ).ready(function() {
 let selsHolder = $('#selectors-holder'),
     scoreHolder = $('#score-holder'),
     wordsHolder = $('#words-holder');
-
-let score = [
-    [0, 'not marked yet', 'unmarked'],
-    [0, 'well known', 'well-known'],
-    [0, 'need to learn', 'need-to-learn']
-];
 
 let allWords = [
     ["a","the"],["v","be"],["c","and"],["i","of"],["a","a"],["i","in"],["t","to"],["v","have"],["i","to"],["p","it"],["p","I"],["c","that"],["i","for"],["p","you"],["p","he"],["i","with"],["i","on"],["v","do"],["v","say"],["d","this"],["p","they"],["i","at"],["c","but"],["p","we"],["a","his"],["i","from"],["d","that"],["x","not"],["x","n't"],["i","by"],["p","she"],["c","or"],["c","as"],["d","what"],["v","go"],["a","their"],["v","can"],["p","who"],["v","get"],["c","if"],["v","would"],["a","her"],["d","all"],["a","my"],["v","make"],["i","about"],["v","know"],["v","will"],["i","as"],["r","up"],["m","one"],["n","time"],["e","there"],["n","year"],["r","so"],["v","think"],["c","when"],["d","which"],["p","them"],["d","some"],["p","me"],["n","people"],["v","take"],["r","out"],["i","into"],["r","just"],["v","see"],["p","him"],["a","your"],["v","come"],["v","could"],["r","now"],["c","than"],["i","like"],["j","other"],["r","how"],["r","then"],["a","its"],["a","our"],["m","two"],["r","more"],["d","these"],["v","want"],["n","way"],["v","look"],["m","first"],["r","also"],["j","new"],["c","because"],["n","day"],["d","more"],["v","use"],["a","no"],["n","man"],["v","find"],["r","here"],["n","thing"],["v","give"],["d","many"],["r","well"],["r","only"],["d","those"],["v","tell"],["p","one"],["r","very"],["p","her"],["r","even"],["r","back"],["d","any"],["j","good"],["n","woman"],["i","through"],["p","us"],["n","life"],["n","child"],["r","there"],["v","work"],["r","down"],["v","may"],["i","after"],["v","should"],["v","call"],["n","world"],["i","over"],["n","school"],["r","still"],["v","try"],["r","in"],["r","as"],["m","last"],["v","ask"],["v","need"],["r","too"],["v","feel"],["m","three"],["r","when"],["n","state"],["r","never"],["v","become"],["i","between"],["j","high"],["r","really"],["p","something"],["r","most"],["d","another"],["d","much"],["n","family"],["d","own"],["i","out"],["v","leave"],["v","put"],["j","old"],["c","while"],["v","mean"],["r","on"],["v","keep"],["n","student"],["r","why"],["v","let"],["j","great"],["d","same"],["j","big"],["n","group"],["v","begin"],["v","seem"],["n","country"],["v","help"],["v","talk"],["c","where"],["v","turn"],["n","problem"],["a","every"],["v","start"],["n","hand"],["v","might"],["j","American"],["v","show"],["n","part"],["r","about"],["i","against"],["n","place"],["r","over"],["d","such"],["r","again"],["d","few"],["n","case"],["d","most"],["n","week"],["n","company"],["r","where"],["n","system"],["d","each"],["r","right"],["n","program"],["v","hear"],["c","so"],["n","question"],["i","during"],["n","work"],["v","play"],["n","government"],["v","run"],["j","small"],["n","number"],["r","off"],["r","always"],["v","move"],["v","like"],["n","night"],["v","live"],["n","Mr"],["n","point"],["v","believe"],["v","hold"],["r","today"],["v","bring"],["v","happen"],["m","next"],["i","without"],["i","before"],["j","large"],["r","all"],["m","million"],["v","must"],["n","home"],["i","under"],["n","water"],["n","room"],["v","write"],["n","mother"],["n","area"],["j","national"],["n","money"],["n","story"],["j","young"],["n","fact"],["n","month"],["j","different"],["n","lot"],["n","right"],["n","study"],["n","book"],["n","eye"],["n","job"],["n","word"],["c","though"],["n","business"],["n","issue"],["n","side"],["n","kind"],["m","four"],["n","head"],["r","far"],["j","black"],["j","long"],["d","both"],["j","little"],["n","house"],["u","yes"],["c","after"],["c","since"],["r","long"],["v","provide"],["n","service"],["i","around"],["n","friend"],["j","important"],["n","father"],["v","sit"],["r","away"],["c","until"],["n","power"],["n","hour"],["n","game"],["r","often"],["r","yet"],["n","line"],["j","political"],["n","end"],["i","among"],["r","ever"],["v","stand"],["j","bad"],["v","lose"],["r","however"],["n","member"],["v","pay"],["n","law"],["v","meet"],["n","car"],["n","city"],["r","almost"],["v","include"],["v","continue"],["v","set"],["r","later"],["n","community"],["r","much"],["n","name"],["m","five"],["r","once"],["j","white"],["r","least"],["n","president"],["v","learn"],["j","real"],["v","change"],["n","team"],["n","minute"],["j","best"],["d","several"],["n","idea"],["n","kid"],["n","body"],["n","information"],["p","nothing"],["r","ago"],["j","right"],["v","lead"],["j","social"],["v","understand"],["c","whether"],["n","back"],["v","watch"],["r","together"],["v","follow"],["r","around"],["n","parent"],["j","only"],["v","stop"],["n","face"],["p","anything"],["v","create"],["j","public"],["r","already"],["v","speak"],["n","others"],["v","read"],["n","level"],["v","allow"],["v","add"],["n","office"],["v","spend"],["n","door"],["n","health"],["n","person"],["n","art"],["j","sure"],["i","such"],["n","war"],["n","history"],["n","party"],["i","within"],["v","grow"],["n","result"],["v","open"],["n","change"],["n","morning"],["v","walk"],["n","reason"],["j","low"],["v","win"],["n","research"],["n","girl"],["n","guy"],["j","early"],["n","food"],["c","before"],["n","moment"],["p","himself"],["n","air"],["n","teacher"],["n","force"],["v","offer"],["r","enough"],["r","both"],["n","education"],["i","across"],["c","although"],["v","remember"],["n","foot"],["m","second"],["n","boy"],["r","maybe"],["i","toward"],["j","able"],["n","age"],["i","off"],["n","policy"],["p","everything"],["v","love"],["n","process"],["n","music"],["i","including"],["v","consider"],["v","appear"],["r","actually"],["v","buy"],["r","probably"],["j","human"],["v","wait"],["v","serve"],["n","market"],["v","die"],["v","send"],["v","expect"],["r","home"],["n","sense"],["v","build"],["v","stay"],["v","fall"],["u","oh"],["n","nation"],["n","plan"],["v","cut"],["n","college"],["n","interest"],["n","death"],["r","course"],["p","someone"],["n","experience"],["i","behind"],["v","reach"],["j","local"],["v","kill"],["m","six"],["v","remain"],["n","effect"],["n","use"],["u","yeah"],["v","suggest"],["n","class"],["n","control"],["v","raise"],["n","care"],["r","perhaps"],["r","little"],["j","late"],["j","hard"],["n","field"],["r","else"],["v","pass"],["d","former"],["v","sell"],["j","major"],["r","sometimes"],["v","require"],["i","along"],["n","development"],["p","themselves"],["v","report"],["n","role"],["j","better"],["j","economic"],["n","effort"],["i","up"],["v","decide"],["n","rate"],["j","strong"],["j","possible"],["n","heart"],["n","drug"],["n","show"],["n","leader"],["n","light"],["n","voice"],["n","wife"],["j","whole"],["n","police"],["n","mind"],["r","finally"],["v","pull"],["v","return"],["j","free"],["j","military"],["n","price"],["n","report"],["r","less"],["i","according"],["n","decision"],["v","explain"],["n","son"],["v","hope"],["c","even"],["v","develop"],["n","view"],["n","relationship"],["v","carry"],["n","town"],["n","road"],["v","drive"],["n","arm"],["j","true"],["j","federal"],["v","break"],["r","better"],["n","difference"],["v","thank"],["v","receive"],["n","value"],["j","international"],["n","building"],["n","action"],["j","full"],["n","model"],["v","join"],["n","season"],["n","society"],["i","because"],["n","tax"],["n","director"],["r","early"],["n","position"],["n","player"],["v","agree"],["r","especially"],["n","record"],["v","pick"],["v","wear"],["n","paper"],["j","special"],["n","space"],["n","ground"],["n","form"],["v","support"],["n","event"],["n","official"],["d","whose"],["n","matter"],["p","everyone"],["n","center"],["n","couple"],["n","site"],["v","end"],["n","project"],["v","hit"],["v","base"],["n","activity"],["n","star"],["n","table"],["n","need"],["n","court"],["v","produce"],["v","eat"],["n","American"],["v","teach"],["n","oil"],["d","half"],["n","situation"],["j","easy"],["n","cost"],["n","industry"],["n","figure"],["v","face"],["n","street"],["n","image"],["p","itself"],["n","phone"],["r","either"],["n","data"],["v","cover"],["r","quite"],["n","picture"],["j","clear"],["n","practice"],["n","piece"],["n","land"],["j","recent"],["v","describe"],["n","product"],["n","doctor"],["n","wall"],["n","patient"],["n","worker"],["n","news"],["n","test"],["n","movie"],["j","certain"],["n","north"],["n","love"],["j","personal"],["j","open"],["n","support"],["r","simply"],["m","third"],["n","technology"],["v","catch"],["n","step"],["n","baby"],["n","computer"],["n","type"],["n","attention"],["v","draw"],["n","film"],["n","Republican"],["n","tree"],["n","source"],["j","red"],["r","nearly"],["n","organization"],["v","choose"],["v","cause"],["n","hair"],["n","look"],["v","point"],["n","century"],["n","evidence"],["n","window"],["j","difficult"],["v","listen"],["r","soon"],["n","culture"],["m","billion"],["n","chance"],["n","brother"],["n","energy"],["n","period"],["n","course"],["n","summer"],["d","less"],["v","realize"],["m","hundred"],["j","available"],["n","plant"],["j","likely"],["n","opportunity"],["n","term"],["j","short"],["n","letter"],["n","condition"],["n","choice"],["v","place"],["j","single"],["n","rule"],["n","daughter"],["n","administration"],["n","south"],["n","husband"],["n","Congress"],["n","floor"],["n","campaign"],["n","material"],["n","population"],["i","well"],["n","call"],["n","economy"],["j","medical"],["n","hospital"],["n","church"],["v","close"],["m","thousand"],["n","risk"],["j","current"],["n","fire"],["n","future"],["j","wrong"],["v","involve"],["n","defense"],["p","anyone"],["v","increase"],["n","security"],["n","bank"],["p","myself"],["r","certainly"],["n","west"],["n","sport"],["n","board"],["v","seek"],["i","per"],["n","subject"],["n","officer"],["j","private"],["n","rest"],["n","behavior"],["v","deal"],["n","performance"],["v","fight"],["v","throw"],["n","top"],["r","quickly"],["j","past"],["n","goal"],["n","second"],["n","bed"],["n","order"],["n","author"],["v","fill"],["v","represent"],["v","focus"],["j","foreign"],["v","drop"],["v","plan"],["n","blood"],["i","upon"],["n","agency"],["v","push"],["n","nature"],["n","color"],["r","no"],["r","recently"],["n","store"],["v","reduce"],["n","sound"],["v","note"],["j","fine"],["r","before"],["i","near"],["n","movement"],["n","page"],["v","enter"],["v","share"],["i","than"],["j","common"],["j","poor"],["p","other"],["j","natural"],["n","race"],["n","concern"],["n","series"],["j","significant"],["j","similar"],["j","hot"],["n","language"],["p","each"],["r","usually"],["n","response"],["j","dead"],["v","rise"],["n","animal"],["n","factor"],["n","decade"],["n","article"],["v","shoot"],["n","east"],["v","save"],["m","seven"],["n","artist"],["i","away"],["n","scene"],["n","stock"],["n","career"],["i","despite"],["j","central"],["m","eight"],["r","thus"],["n","treatment"],["i","beyond"],["j","happy"],["r","exactly"],["v","protect"],["n","approach"],["v","lie"],["n","size"],["n","dog"],["n","fund"],["j","serious"],["v","occur"],["n","media"],["j","ready"],["n","sign"],["n","thought"],["n","list"],["n","individual"],["j","simple"],["n","quality"],["n","pressure"],["v","accept"],["n","answer"],["r","hard"],["n","resource"],["v","identify"],["j","left"],["n","meeting"],["v","determine"],["v","prepare"],["n","disease"],["d","whatever"],["n","success"],["v","argue"],["n","cup"],["r","particularly"],["n","amount"],["n","ability"],["n","staff"],["v","recognize"],["v","indicate"],["n","character"],["n","growth"],["n","loss"],["n","degree"],["v","wonder"],["n","attack"],["p","herself"],["n","region"],["n","television"],["n","box"],["n","TV"],["n","training"],["r","pretty"],["n","trade"],["n","deal"],["n","election"],["p","everybody"],["j","physical"],["v","lay"],["j","general"],["n","feeling"],["n","standard"],["n","bill"],["n","message"],["v","fail"],["i","outside"],["v","arrive"],["n","analysis"],["n","benefit"],["v","name"],["n","sex"],["r","forward"],["n","lawyer"],["v","present"],["n","section"],["j","environmental"],["n","glass"],["v","answer"],["n","skill"],["n","sister"],["r","PM"],["n","professor"],["n","operation"],["j","financial"],["n","crime"],["n","stage"],["r","ok"],["v","compare"],["n","authority"],["v","miss"],["n","design"],["n","sort"],["n","one"],["v","act"],["m","ten"],["n","knowledge"],["n","gun"],["n","station"],["j","blue"],["v","state"],["n","strategy"],["d","little"],["r","clearly"],["v","discuss"],["r","indeed"],["v","force"],["n","truth"],["n","song"],["n","example"],["j","democratic"],["v","check"],["n","environment"],["n","leg"],["j","dark"],["n","public"],["j","various"],["r","rather"],["v","laugh"],["v","guess"],["n","executive"],["n","set"],["v","study"],["v","prove"],["v","hang"],["j","entire"],["n","rock"],["v","design"],["d","enough"],["v","forget"],["i","since"],["v","claim"],["n","note"],["v","remove"],["n","manager"],["n","help"],["j","close"],["v","sound"],["v","enjoy"],["n","network"],["j","legal"],["j","religious"],["j","cold"],["v","form"],["j","final"],["j","main"],["n","science"],["j","green"],["n","memory"],["n","card"],["i","above"],["n","seat"],["n","cell"],["v","establish"],["j","nice"],["n","trial"],["n","expert"],["r","that"],["n","spring"],["n","firm"],["n","Democrat"],["n","radio"],["v","visit"],["n","management"],["v","care"],["v","avoid"],["v","imagine"],["r","tonight"],["j","huge"],["n","ball"],["u","no"],["r","close"],["v","finish"],["p","yourself"],["n","talk"],["n","theory"],["n","impact"],["v","respond"],["n","statement"],["v","maintain"],["n","charge"],["j","popular"],["j","traditional"],["i","onto"],["v","reveal"],["n","direction"],["n","weapon"],["n","employee"],["j","cultural"],["v","contain"],["n","peace"],["v","head"],["v","control"],["n","base"],["n","pain"],["v","apply"],["n","play"],["n","measure"],["j","wide"],["v","shake"],["v","fly"],["n","interview"],["v","manage"],["n","chair"],["n","fish"],["j","particular"],["n","camera"],["n","structure"],["n","politics"],["v","perform"],["n","bit"],["n","weight"],["r","suddenly"],["v","discover"],["n","candidate"],["j","top"],["n","production"],["v","treat"],["n","trip"],["n","evening"],["v","affect"],["i","inside"],["n","conference"],["n","unit"],["r","best"],["n","style"],["n","adult"],["v","worry"],["n","range"],["v","mention"],["i","rather"],["j","far"],["j","deep"],["n","past"],["n","edge"],["j","individual"],["j","specific"],["n","writer"],["n","trouble"],["j","necessary"],["i","throughout"],["n","challenge"],["n","fear"],["n","shoulder"],["n","institution"],["j","middle"],["n","sea"],["n","dream"],["n","bar"],["j","beautiful"],["n","property"],["r","instead"],["v","improve"],["n","stuff"],["n","detail"],
@@ -99,7 +93,16 @@ let sels = {}, selsOptions = {
         '*': 'all parts of speech'
     },
     'num': {},
+    'marks': {
+        '*': 'any color'
+    }
 };
+
+let score = [
+    [0, 'not marked yet', 'unmarked'],
+    [0, 'well known', 'well-known'],
+    [0, 'need to learn', 'need-to-learn']
+];
 
 let linksOptions = {
     'context': 'https://context.reverso.net/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9/[[word]]',
@@ -122,6 +125,10 @@ function initSelectors() {
         selsOptions.num[n] = 'from ' + n;
     }
 
+    for (let i = 0; i < score.length; i++) {
+        selsOptions.marks[i] = score[i][1];
+    }
+
     for (let id in selsOptions) {
         sels[id] = $('<select>')
             .prop('id', id)
@@ -139,13 +146,15 @@ function initSelectors() {
         selsHolder.append(' ');
     }
 
+    sels.marks.val('*');
     loadSelectorsValue();
 
     sels.num.trigger('change');
 }
 
 function showWords() {
-    let maxCount = parseInt(sels.num.val()), catId = sels.cat.val();
+    let maxCount = parseInt(sels.num.val()), catId = sels.cat.val(), marksFilter = sels.marks.val();
+    marksFilter = marksFilter === '*' ? -1 : parseInt(marksFilter);
 
     $(document).prop('title', 'Check list for ' + maxCount + ' most common words in English');
 
@@ -162,15 +171,18 @@ function showWords() {
             break;
         }
 
-        let mark = allWords[i][2] ? allWords[i][2] : 0;
-        score[mark][0]++;
-
         let ci = allWords[i][0];
         if (!catCounts[ci]) {
             catCounts[ci] = 0;
         }
         catCounts[ci]++;
         if (catId !== '*' && catId !== ci) {
+            continue;
+        }
+
+        let mark = allWords[i][2] ? parseInt(allWords[i][2]) : 0;
+        score[mark][0]++;
+        if (marksFilter >= 0 && marksFilter !== mark) {
             continue;
         }
 
