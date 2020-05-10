@@ -48,8 +48,8 @@
     <h3>Hello.</h3>
     <p>Do you know the most common words in English?<br/> (from <a href="https://www.wordfrequency.info/free.asp">wordfrequency.info</a>)</p>
     <p>This is not an exercise machine.<br/> There is just a checklist for those who want to check their knowledge for gaps.</p>
-    <p>You can mark the words with a click or tap.<br/> Double clicks can also be useful.</p>
-    <p>And don't forget to look into selectors at the top of the page.</p>
+    <p>You can mark the words with a click or tap.<br/> Right clicks or double clicks can also be useful.</p>
+    <p>And take a look at the options on the top.</p>
     <p>P.S. The cookies should be enabled to save your progress.</p>
 </div>
 
@@ -112,10 +112,12 @@ let score = [
 
 let linksOptions = {
     'context': 'https://context.reverso.net/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9/[[word]]',
+    'synonyms': 'https://synonyms.reverso.net/%D1%81%D0%B8%D0%BD%D0%BE%D0%BD%D0%B8%D0%BC%D1%8B/en/[[word]]',
     'merriam-webster': 'https://www.merriam-webster.com/dictionary/[[word]]',
     'lexico': 'https://www.lexico.com/definition/[[word]]',
     'cambridge': 'https://dictionary.cambridge.org/us/dictionary/english/[[word]]',
     'oxford': 'https://www.oxfordlearnersdictionaries.com/definition/english/country?q=[[word]]',
+    'collins': 'https://www.collinsdictionary.com/dictionary/english/[[word]]',
     'urbandictionary': 'https://www.urbandictionary.com/define.php?term=[[word]]',
     'google translate': 'https://translate.google.com/?sl=en&tl=ru&text=[[word]]',
     'google images': 'https://www.google.com/search?tbm=isch&q=[[word]]',
@@ -210,8 +212,9 @@ function showWords() {
             .text(allWords[i][1])
             .addClass('mark' + mark)
             .appendTo(wordsHolder)
-            .on('dblclick', dblclickWord)
             .on('click', clickWord)
+            .on('dblclick', dblclickWord)
+            .on('contextmenu', dblclickWord)
         ;
         wordsHolder.append(' ');
         addedCount++;
@@ -228,16 +231,19 @@ function showWords() {
     saveSelectorsValue();
 }
 
-function clickWord() {
+function clickWord(e) {
     modifyMark($(this).prop('id'));
+    return false;
 }
 
-function dblclickWord() {
+function dblclickWord(e) {
     let wordId = $(this).prop('id');
 
-    // fix for two onclick
-    for (let i = 0; i < score.length - 2; i++) {
-        modifyMark(wordId);
+    if (e.button < 2) {
+        // fix for two onclick
+        for (let i = 0; i < score.length - 2; i++) {
+            modifyMark(wordId);
+        }
     }
 
     let word = $(this).text(), popup = $('#word-popup');
@@ -253,6 +259,8 @@ function dblclickWord() {
         .append( $('<p>').html(links.join(' ')) )
         .modal()
     ;
+
+    return false;
 }
 
 function modifyMark(wordId) {
