@@ -111,6 +111,7 @@ let score = [
 
 let linksOptions = {
     'context': 'https://context.reverso.net/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9/[[word]]',
+    'playphrase': 'http://playphrase.me/#/search?q=[[word]]',
     'synonyms': 'https://synonyms.reverso.net/%D1%81%D0%B8%D0%BD%D0%BE%D0%BD%D0%B8%D0%BC%D1%8B/en/[[word]]',
     'merriam-webster': 'https://www.merriam-webster.com/dictionary/[[word]]',
     'lexico': 'https://www.lexico.com/definition/[[word]]',
@@ -236,7 +237,7 @@ function clickWord(e) {
 }
 
 function dblclickWord(e) {
-    let wordId = $(this).prop('id');
+    let wordId = $(this).prop('id'), catId = allWords[wordId][0];
 
     if (e.button < 2) {
         // fix for two onclick
@@ -253,7 +254,7 @@ function dblclickWord(e) {
 
     popup
         .empty()
-        .append( $('<p>').html( '[' + wordId + '] <b>' + word + '</b> (' + selsOptions.cat[sels.cat.val()] + ')') )
+        .append( $('<p>').html( '[' + wordId + '] <b>' + word + '</b> (' + selsOptions.cat[catId] + ')') )
         .append( $('<p>').html('Find in:') )
         .append( $('<p>').html(links.join(' ')) )
         .modal()
